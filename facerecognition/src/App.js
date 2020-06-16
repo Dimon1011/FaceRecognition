@@ -95,6 +95,15 @@ class App extends Component {
       })
         .then(response => response.json())
         .then(count => {
+        if (response) {
+          fetch('https://secure-wildwood-49384.herokuapp.com/image', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              id: this.state.user.id
+            })
+          })
+        }  
           this.setState(Object.assign(this.state.user, { entries: count}))
         })
         .catch(console.log)
